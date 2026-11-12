@@ -214,3 +214,21 @@ When editing shared upstream files, mark Kilo-specific lines with `kilocode_chan
 Markers are NOT needed in paths that contain `kilocode` in the name (e.g. `packages/opencode/src/kilocode/`, `packages/opencode/test/kilocode/`) — these are entirely Kilo Code additions and won't conflict with upstream.
 
 For decision rules on when to keep changes inline vs. extract Kilo logic, marker placement guidance, and verification commands, load `.kilo/skills/kilocode-merge-minimizer/SKILL.md`.
+
+## Git author identity for owner-authorized coding agents
+
+Before any Codex, ChatGPT cloud or other agent performs `git commit` on behalf
+of this repository owner, set the checkout's local Git identity:
+
+```bash
+git config --local user.name "Samuel Komane"
+git config --local user.email "159257666+samkomane008@users.noreply.github.com"
+git var GIT_AUTHOR_IDENT
+git var GIT_COMMITTER_IDENT
+```
+
+This links eligible owner-authored commits to [samkomane008](https://github.com/samkomane008).
+Do not automatically add AI-assistant `Co-authored-by` trailers.
+Preserve actual authorship for outside contributors and Dependabot.
+Git author settings cannot override a hosted GitHub App actor or web-flow merge
+committer. Never rewrite existing Git history or bypass CI to alter attribution.
